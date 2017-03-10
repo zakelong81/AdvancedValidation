@@ -8,7 +8,6 @@ function validate()
   if (userEntered.length >= 6)
   {
 
-
     //Turn the username items green
     document.getElementById("usernameGroup").classList.remove("has-error");
     document.getElementById("usernameGroup").classList.add("has-success");
@@ -41,7 +40,6 @@ function validate()
     document.getElementById("usernameError").classList.add("shown-message");
     //Turn the username items red
     document.getElementById("usernameGroup").classList.add("has-error");
-
   }
 
 //password
@@ -75,23 +73,30 @@ function validate()
     document.getElementById("passwordGroup").classList.add("has-error");
   }
 
-
-
-  else if (/[!@#$%^&*()]/g.test(passEntered) == false)
+  else if( passEntered != passEntered.toLowerCase() )
   {
     //Show message that there is an error with the password...
-    document.getElementById("passwordError").innerHTML="Password must contain 1 special character such as !@#$%^&*()";
+    document.getElementById("passwordError").innerHTML="Password must contain a upper case";
     document.getElementById("passwordError").classList.remove("hidden-message");
     document.getElementById("passwordError").classList.add("shown-message");
     //Turn the password items red
     document.getElementById("passwordGroup").classList.add("has-error");
   }
 
-
-  else if( isNaN(passEntered) == false )
+  else if( /\d/.test(passEntered) == false )
   {
     //Show message that there is an error with the password...
-    document.getElementById("passwordError").innerHTML="Password can NOT contain all number";
+    document.getElementById("passwordError").innerHTML="Password must contain a number";
+    document.getElementById("passwordError").classList.remove("hidden-message");
+    document.getElementById("passwordError").classList.add("shown-message");
+    //Turn the password items red
+    document.getElementById("passwordGroup").classList.add("has-error");
+  }
+
+  else if (/[!@#$%^&*()]/g.test(passEntered) == false)
+  {
+    //Show message that there is an error with the password...
+    document.getElementById("passwordError").innerHTML="Password must contain a special character such as !@#$%^&*()";
     document.getElementById("passwordError").classList.remove("hidden-message");
     document.getElementById("passwordError").classList.add("shown-message");
     //Turn the password items red
@@ -110,6 +115,5 @@ function validate()
     document.getElementById("passwordError").innerHTML="Success creating password.";
     document.getElementById("passwordError").classList.remove("hidden-message");
     document.getElementById("passwordError").classList.add("shown-message");
-
   }
 }
